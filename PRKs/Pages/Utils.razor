@@ -1,0 +1,64 @@
+@page "/Utils"
+
+<h3>Utils</h3>
+
+<hr/>
+
+<div class="tabs is-toggle">
+    <ul>
+        <li class="@TabDictionary["Pictures"]">
+            <a @onclick='() => SetActiveTab("Pictures")'>
+                <span class="icon is-small">
+                    <i class="fa fa-image"></i>
+                </span>
+                <span>Pictures</span>
+            </a>
+        </li>
+        <li class="@TabDictionary["Music"]">
+            <a @onclick='() => SetActiveTab("Music")'>
+                <span class="icon is-small">
+                    <i class="fa fa-music"></i>
+                </span>
+                <span>Music</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class="icon is-small">
+                    <i class="fa fa-film"></i>
+                </span>
+                <span>Videos</span>
+            </a>
+        </li>
+        <li>
+            <a>
+                <span class="icon is-small">
+                    <i class="fa fa-file-alt"></i>
+                </span>
+                <span>Documents</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private string ActiveTab { get; set; }
+
+    private Dictionary<string, string> TabDictionary { get; } = new Dictionary<string, string?>
+    {
+        {"Pictures", "is-active"},
+        {"Music", ""},
+        {"Videos", ""},
+        {"Documents", ""}
+    };
+
+    private void SetActiveTab(string tab)
+    {
+        foreach (var keyValuePair in TabDictionary)
+        {
+            TabDictionary[keyValuePair.Key] = "";
+        }
+        TabDictionary[tab] = "is-active";
+    }
+
+}
